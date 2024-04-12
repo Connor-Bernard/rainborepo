@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Text Input Form</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <style>
+        body {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            background-color: #29161d;
+            color: white;
+        }
+        .container {
+            text-align: center;
+        }
+        .form-group {
+            margin-bottom: 20px;
+        }
+        label {
+            display: block;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <h1>rainborepo AI</h1>
+        <form id="textInputForm">
+            <div class="form-group">
+                <label for="inputText">Please describe the medium you would like to consume. Our AI will provide the
+                    best recommendation.</label>
+                <input type="text" class="form-control" id="inputText" placeholder="Enter text">
+            </div>
+
+            <!-- David: I have no clue why it only redirects with the JS command but I would prefer it being one clean line
+            if someone figures it out. -->
+            <!-- <form action="rec-page.html" method="get">
+                <button type="submit" class="btn btn-primary">recommend rainborepo!</button>
+            </form> -->
+            <button type="submit" class="btn btn-primary" onclick="redirectToRecPage()">recommend rainborepo!</button>
+
+            <script>
+                function redirectToRecPage() {
+                    window.location.href = "rec-page.html";
+                }
+            </script>
+        </form>
+        </form>
+    </div>
+
+    <script>
+        document.getElementById("textInputForm").addEventListener("submit", function (event) {
+            event.preventDefault(); // Prevent form submission
+            var userInput = document.getElementById("inputText").value;
+            alert("User input: " + userInput);
+        });
+    </script>
+</body>
+
+</html>

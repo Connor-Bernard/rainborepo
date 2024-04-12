@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Movie Details</title>
+    <!-- TODO replace variables (text, image, star rating) with blackboxed elements from back-end -->
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            font-family: Arial, sans-serif;
+        }
+        .container {
+            display: flex;
+            justify-content: center; 
+            align-items: center;
+            height: 100vh; 
+            padding: 20px;
+        }
+        .thumbnail {
+            flex: 1;
+            text-align: center;
+            margin-right: 20px;
+        }
+        .movie-details {
+            flex: 1;
+            text-align: left; 
+        }
+        .movie-poster {
+            max-width: 100%;
+            height: auto;
+            max-height: 80vh;
+        }
+        .star-rating {
+            font-size: 24px;
+            color: orange;
+            margin-top: 10px;
+        }
+        .quote {
+            font-size: 2vw; 
+            text-align: center; 
+            margin: 0; 
+            margin-top: 20px; 
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="thumbnail">
+            <img src="path_to_default_poster_image.jpg" alt="Movie Poster" class="movie-poster">
+        </div>
+        <div class="movie-details">
+            <h2 id="movie-name">Moonlight</h2>
+            <p id="movie-description">AI Summary:"Moonlight" is a film that follows the life of a 
+                young black man named Chiron as he navigates his identity and sexuality in a tough 
+                Miami neighborhood. Divided into three chapters, it portrays his journey from childhood 
+                to adulthood, exploring his struggles with his identity and sexuality, particularly his
+                 experiences as a gay man in a hyper-masculine environment. The film beautifully portrays 
+                 themes of love, self-discovery, and acceptance within the LGBTQ community, offering a 
+                 poignant and intimate exploration of Chiron's journey toward embracing his true self 
+                 despite societal pressures and expectations.</p>
+            <div id="star-rating" class="star-rating"></div>
+            <p class="quote">"La La Land deserved Best Picture."</p>
+        </div>
+    </div>
+
+    <script>
+        function generateStarRating(rating) {
+            let stars = '';
+            for (let i = 1; i <= 5; i++) {
+                if (i <= rating) {
+                    stars += '<span>&#9733;</span>'; // Full star character
+                } else {
+                    stars += '<span>&#9734;</span>'; // Empty star character
+                }
+            }
+            return stars;
+        }
+        // Example rating but this can be dynamically grabbed from the film database we use through back-end
+        const rating = 4;
+
+        const starRatingElement = document.getElementById('star-rating');
+        starRatingElement.innerHTML = generateStarRating(rating);
+    </script>
+</body>
+</html>

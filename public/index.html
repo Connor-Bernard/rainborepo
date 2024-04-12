@@ -24,11 +24,47 @@
       work correctly both with client-side routing and a non-root public URL.
       Learn how to configure a non-root public URL by running `npm run build`.
     -->
-    <title>React App</title>
+    <title>Central Webpage</title>
+    <style>
+      body, html {
+          height: 100%;
+          margin: 0;
+          font-family: Arial, sans-serif;
+      }
+      .container {
+          display: flex;
+          height: 100%;
+      }
+      .button {
+          flex: 1;
+          text-align: center;
+          line-height: 60px; 
+          border: 2px solid transparent;
+          border-radius: 5px;
+          font-size: 18px;
+          font-weight: bold;
+          text-decoration: none;
+          cursor: pointer;
+          justify-content: center;
+          align-content: center;
+      }
+      .button.red {
+          background-color: #29161d;
+          color: white;
+      }
+      .button.blue {
+          background-color: #fa9495;
+          color: white;
+      }
+  </style>
   </head>
   <body>
-    <noscript>You need to enable JavaScript to run this app.</noscript>
-    <div id="root"></div>
+  <div class="container">
+      <a href="prompt-page.html" class="button red">PROMPT</a>
+      <a href="survey-page.html" class="button blue">SURVEY</a>
+  </div>
+  </body>
+    </html>
     <!--
       This HTML file is a template.
       If you open it directly in the browser, you will see an empty page.
