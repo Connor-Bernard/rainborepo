@@ -1,0 +1,32 @@
+.container {
+    display: flex;
+    justify-content: center; 
+    align-items: center;
+    height: 100vh; 
+    padding: 20px;
+}
+.thumbnail {
+    flex: 1;
+    text-align: center;
+    margin-right: 20px;
+}
+.movie-details {
+    flex: 1;
+    text-align: left; 
+}
+.movie-poster {
+    max-width: 100%;
+    height: auto;
+    max-height: 80vh;
+}
+.star-rating {
+    font-size: 24px;
+    color: orange;
+    margin-top: 10px;
+}
+.quote {
+    font-size: 2vw; 
+    text-align: center; 
+    margin: 0; 
+    margin-top: 20px; 
+}
