@@ -7,6 +7,7 @@ import {
 } from "react-router-dom";
 import RecPage from './views/RecPage';
 import PromptPage from './views/PromptPage'; 
+import SurveyPage from './views/SurveyPage';
 
 const router = createBrowserRouter([
     {
@@ -16,6 +17,10 @@ const router = createBrowserRouter([
     {
       path: '/prompt',
       element: <PromptPage />
+    },
+    {
+      path: '/survey',
+      element: <SurveyPage />
     }
 ]);
 
