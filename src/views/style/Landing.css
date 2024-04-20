@@ -1,0 +1,41 @@
+.container {
+    display: flex;
+    height: 100%;
+}
+.button {
+    flex: 1;
+    text-align: center;
+    line-height: 60px; 
+    border: 2px solid transparent;
+    border-radius: 5px;
+    font-size: 18px;
+    font-weight: bold;
+    text-decoration: none;
+    cursor: pointer;
+    justify-content: center;
+    align-content: center;
+}
+.button.red {
+    background-color: #29161d;
+    color: white;
+}
+.button.blue {
+    background-color: #fa9495;
+    color: white;
+}
+
+/* header bar style - inspired by assignment 2 */
+.task-header {
+display: flex;
+align-items: center;
+justify-content: space-between;
+
+margin-bottom: 1em;
+margin-left: 5px;
+
+& h1 {
+    margin-bottom: 0;
+    margin-right: 1em;
+    font-size: 1.75rem;
+}
+}

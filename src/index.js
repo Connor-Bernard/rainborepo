@@ -8,11 +8,16 @@ import {
 import RecPage from './views/RecPage';
 import PromptPage from './views/PromptPage'; 
 import SurveyPage from './views/SurveyPage';
+import LandingPage from './views/Landing';
 
 const router = createBrowserRouter([
     {
         path: '/',
-        element: <RecPage />
+        element: <LandingPage />
+    },
+    {
+      path: '/recommendation',
+      element: <RecPage />
     },
     {
       path: '/prompt',

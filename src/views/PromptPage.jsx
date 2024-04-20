@@ -1,4 +1,5 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 import './style/PromptPage.css';
 
 export default function PromptPage() {
@@ -6,7 +7,7 @@ export default function PromptPage() {
         <>
             <div className="task-header">
                 <div>
-                    <a href="/" className="button" id="home-button">Home</a>
+                    <Link to="/" className="button" id="home-button">Home</Link>
                 </div>
 
                 <div>
