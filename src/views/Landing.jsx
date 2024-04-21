@@ -7,7 +7,7 @@ export default function LandingPage() {
     return (
         
         <>
-        
+        <title>Landing Page</title>
             <div className={classname(styles.taskHeader)}>
                 <div>
                     <Link to="/" className={classname(styles.button)} id={styles.homeButton}>Home</Link>

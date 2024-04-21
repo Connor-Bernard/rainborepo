@@ -1,0 +1,72 @@
+body {
+    height: 100vh !important;
+    background-color: #29161d !important;
+    color: white !important;
+}
+.container {
+    margin-top: 25vh !important;
+    text-align: center !important;
+    display: flex !important;
+    flex-grow: 5 !important;
+    flex-direction: column !important;
+}
+.formGroup {
+    display: flex !important;
+    flex-direction: column !important;
+    align-items: center !important; }
+label {
+    display: block !important;
+    margin-bottom: 10px !important;
+    width: 100% !important;
+}
+
+
+.button {
+    flex: 1 !important;
+    text-align: center !important;
+    line-height: 60px !important; 
+    border: 2px solid transparent !important;
+    border-radius: 5px !important;
+    font-size: 18px !important;
+    font-weight: bold !important;
+    text-decoration: none !important;
+    cursor: pointer !important;
+    justify-content: center !important;
+    align-content: center !important;
+}
+
+/* header bar style - inspired by assignment 2 task 5*/
+.taskHeader {
+    display: flex !important;
+    flex-grow: 1 !important;
+    justify-content: space-between !important;
+
+    margin-bottom: 1em !important;
+    margin-left: 5px !important;
+
+    & h1 {
+        margin-top: 3vh !important;
+        margin-bottom: 0 !important;
+        margin-right: 1em !important; 
+        font-size: 1.75rem !important; 
+    }
+    #inputText {
+        display: flex !important;
+        flex-direction: column !important;
+        align-items: center !important;
+    }
+    
+    #inputText input[type="text"] {
+        width: 100% !important;
+        padding: 10px;
+        box-sizing: border-box !important; /* Ensures padding is included in the width */
+        border-radius: 5px !important;
+        border: 1px solid #ced4da !important; /* Bootstrap's default input border color */
+        background-color: #fff !important; /* Bootstrap's default input background color */
+        margin-bottom: 10px !important;
+    }
+    
+    .btn-primary {
+        width: 100% !important;
+    }
+}
