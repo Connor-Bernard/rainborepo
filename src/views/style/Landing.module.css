@@ -15,6 +15,12 @@
     justify-content: center;
     align-content: center;
 }
+.largeFont{
+    font-size: 34px;
+}
+.smallFont {
+    font-size: 18px;
+}
 .button.red {
     background-color: #29161d;
     color: white;
