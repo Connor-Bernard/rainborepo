@@ -36,6 +36,7 @@ export default function SurveyPage() {
             name: "genre",
             title: "Preferred Movie Genres (Select all that apply)",
             type: "checkbox",
+            colCount: 2,
             choices: [
                 "Drama", "Romance", "Comedy", "Documentary", "Horror", "Thriller", "Action", "Science Fiction", "Fantasy", "Animation"            
             ]
@@ -58,23 +59,32 @@ export default function SurveyPage() {
       };
 
     const survey = new Model(surveyJson);
+    
+    survey.applyTheme({
+        "cssVariables": {
+            "--sjs-general-backcolor-dim": "#29161d",
+            "--sjs-primary-backcolor": "#085ED7"
+        }
+      });
 
     return (
-        
-          
-        //   function App() {
-        //     const survey = new Model(surveyJson);
-          
-        //     return <Survey model={survey} />;
-        //   }
-          
-        //   export default App;
-        // <div>
-        //     hello
-        // </div>
 
-        
+        <>
+            <title>Prompt Page</title>
+                <body>
+                    <div className={classname(styles.taskHeader)}>
+                        <div>
+                            <Link to="/" className={classname(styles.button)} id={styles.homeButton}>Home</Link>
+                        </div>
+                        <div>
+                            <h1>rainborepo</h1>
+                        </div>
+                    </div>
+                    <div>
+                        <Survey model={survey} />
+                    </div>
+                </body>
+        </>
           
-        <Survey model={survey} />
     );
 }
