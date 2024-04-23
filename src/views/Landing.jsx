@@ -5,9 +5,7 @@ import classname from 'classnames';
 
 export default function LandingPage() {
     return (
-
         <>
-            <title>Landing Page</title>
             <div className={classname(styles.taskHeader)}>
                 <div>
                     <Link to="/" className={classname(styles.button)} id={styles.homeButton}>Home</Link>
@@ -24,7 +22,7 @@ export default function LandingPage() {
                     <span className={styles.smallFont}>Explore our media treasure trove with Rainborepo AI! Unearth the perfect recommendation tailored just for you by effortlessly searching through our extensive database.</span>
                 </Link>
                 <Link to="/survey" className={classname(styles.button, styles.blue, styles.largeFont)}>SURVEY
-                    <br></br>
+                    <br />
                     <span className={styles.smallFont}>Hitting a mental block? Simply breeze through a short survey and let our AI generate tailored recommendations just for you!</span>
                 </Link>
             </div>
