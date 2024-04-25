@@ -2,7 +2,7 @@ import { useEffect, useMemo, useState } from 'react';
 import axios from 'axios';
 
 export default function useOMDB(title) {
-    const [loading, setLoading] = useState(true);
+    const [loading, setLoading] = useState(false);
     const [data, setData] = useState();
     const [error, setError] = useState();
     const omdb = useMemo(() => axios.create({
@@ -16,6 +16,7 @@ export default function useOMDB(title) {
     }), []);
 
     useEffect(() => {
+        setLoading(true);
         if (!title) {
             setLoading(false);
             return;
