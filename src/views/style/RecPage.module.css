@@ -1,14 +1,49 @@
-body {
-    height: 100vh !important;
-    background-color: #29161d !important;
-    color: white !important;
+.container {
+    display: flex;
+    justify-content: center; 
+    align-items: center;
+    height: 100vh; 
+    padding: 20px;
+}
+.thumbnail {
+    flex: 1;
+    text-align: center;
+    margin-right: 20px;
+}
+.movie-details {
+    flex: 1;
+    text-align: left; 
+}
+.movie-poster {
+    max-width: 100%;
+    height: auto;
+    max-height: 80vh;
+}
+.star-rating {
+    font-size: 24px;
+    color: orange;
+    margin-top: 10px;
+}
+.genre {
+    font-size: 2vw; 
+    text-align: center; 
+    margin: 0; 
+    margin-top: 20px; 
 }
 
-.sv-checkbox__decorator, .sv-radio__decorator{
-    margin-bottom: -10px;
-    margin-left: -41px;
+.button {
+    flex: 1 !important;
+    text-align: center !important;
+    line-height: 60px !important; 
+    border: 2px solid transparent !important;
+    border-radius: 5px !important;
+    font-size: 18px !important;
+    font-weight: bold !important;
+    text-decoration: none !important;
+    cursor: pointer !important;
+    justify-content: center !important;
+    align-content: center !important;
 }
-
 
 /* header bar style - inspired by assignment 2 task 5*/
 .taskHeader {

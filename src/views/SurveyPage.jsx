@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import { Link, useNavigate } from 'react-router-dom';
-import styles from './style/Landing.module.css';
+import styles from './style/SurveyPage.module.css';
 import classname from 'classnames';
 import surveyData from '../data/surveyQuestions.json';
 

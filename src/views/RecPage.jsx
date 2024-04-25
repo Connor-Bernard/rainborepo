@@ -1,10 +1,11 @@
 import React, { useEffect, useMemo, useState } from 'react';
-import { useNavigate } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import { sanitize } from 'dompurify';
 import { useSearchParams } from 'react-router-dom';
 import useOMDB from '../hooks/useOMDB';
 import useReagent from '../hooks/useReagent';
-import './style/RecPage.css';
+import styles from './style/RecPage.module.css';
+import classname from 'classnames';
 
 export default function RecPage() {
     const [loadingAiRecommendation, setLoadingAiRecommendation] = useState(false);
@@ -53,38 +54,49 @@ export default function RecPage() {
     }
 
     return (
-        <div className="container">
-            {omdbInfo?.data && omdbInfo.data['Poster'] &&
-                <div className="thumbnail">
-                    <img src={omdbInfo.data['Poster']} alt="Movie Poster" className="movie-poster" />
+        <div>
+            <div className={classname(styles.taskHeader)}>
+                <div>
+                    <Link to="/" className={classname(styles.button)} id={styles.homeButton}>Home</Link>
                 </div>
-            }
-            <div className="movie-details">
-                <h2 id="movie-name">{filmName}</h2>
-                <p id="movie-description">{omdbInfo?.data && omdbInfo.data['Plot'] &&
-                    <>
-                        <strong>Plot: </strong>
-                        {omdbInfo.data['Plot']}
-                        <br />
-                    </>
+                <div>
+                    <h1>rainborepo</h1>
+                </div>
+            </div>
+
+            <div className="container">
+                {omdbInfo?.data && omdbInfo.data['Poster'] &&
+                    <div className="thumbnail">
+                        <img src={omdbInfo.data['Poster']} alt="Movie Poster" className="movie-poster" />
+                    </div>
                 }
-                    {aiRecommendation &&
+                <div className="movie-details">
+                    <h2 id="movie-name">{filmName}</h2>
+                    <p id="movie-description">{omdbInfo?.data && omdbInfo.data['Plot'] &&
                         <>
-                            <br />
-                            <strong>AI Generated Recommendation: </strong>
-                            {aiRecommendation}
+                            <strong>Plot: </strong>
+                            {omdbInfo.data['Plot']}
                             <br />
                         </>
                     }
-                </p>
-                {omdbInfo?.data?.imdbRating &&
-                    <div id="star-rating" className="star-rating">
-                        {omdbInfo.data.imdbRating}/10
-                    </div>
-                }
-                {omdbInfo?.data && omdbInfo.data['Genre'] &&
-                    <p className="genre">{omdbInfo.data['Genre']}</p>
-                }
+                        {aiRecommendation &&
+                            <>
+                                <br />
+                                <strong>AI Generated Recommendation: </strong>
+                                {aiRecommendation}
+                                <br />
+                            </>
+                        }
+                    </p>
+                    {omdbInfo?.data?.imdbRating &&
+                        <div id="star-rating" className="star-rating">
+                            {omdbInfo.data.imdbRating}/10
+                        </div>
+                    }
+                    {omdbInfo?.data && omdbInfo.data['Genre'] &&
+                        <p className="genre">{omdbInfo.data['Genre']}</p>
+                    }
+                </div>
             </div>
         </div>
     );

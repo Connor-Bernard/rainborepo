@@ -1,33 +1,26 @@
-.container {
-    display: flex;
-    height: 100vh;
+body {
+    height: 100vh !important;
+    background-color: #29161d !important;
+    color: white !important;
 }
+
+.sv-checkbox__decorator, .sv-radio__decorator{
+    margin-bottom: -10px;
+    margin-left: -41px;
+}
+
 .button {
-    flex: 1;
-    text-align: center;
-    line-height: 60px; 
-    border: 2px solid transparent;
-    border-radius: 5px;
-    font-size: 18px;
-    font-weight: bold;
-    text-decoration: none;
-    cursor: pointer;
-    justify-content: center;
-    align-content: center;
-}
-.largeFont{
-    font-size: 34px;
-}
-.smallFont {
-    font-size: 18px;
-}
-.button.red {
-    background-color: #29161d;
-    color: white;
-}
-.button.blue {
-    background-color: #fa9495;
-    color: white;
+    flex: 1 !important;
+    text-align: center !important;
+    line-height: 60px !important; 
+    border: 2px solid transparent !important;
+    border-radius: 5px !important;
+    font-size: 18px !important;
+    font-weight: bold !important;
+    text-decoration: none !important;
+    cursor: pointer !important;
+    justify-content: center !important;
+    align-content: center !important;
 }
 
 /* header bar style - inspired by assignment 2 task 5*/
