@@ -3,6 +3,7 @@ import { Link, useNavigate } from 'react-router-dom';
 import { sanitize } from 'dompurify';
 import { useSearchParams } from 'react-router-dom';
 import useOMDB from '../hooks/useOMDB';
+import useRapid from '../hooks/useRapid';
 import useReagent from '../hooks/useReagent';
 import styles from './style/RecPage.module.css';
 import classname from 'classnames';
@@ -32,8 +33,6 @@ export default function RecPage() {
             setAiRecommendation(res.data);
             setLoadingAiRecommendation(false);
         }).catch((err) => {
-            console.debug(err);
-            console.debug(filmName);
             if (err.status === 400) {
                 console.error('Could not generate review for specified movie.');
             }
@@ -47,7 +46,18 @@ export default function RecPage() {
         if (omdbInfo.error && omdbInfo.error.status !== 400) {
             navigate('/');
         }
-    }, [omdbInfo.error, navigate])
+    }, [omdbInfo.error, navigate]);
+
+    const providers = useRapid({
+        service: 'streaming-availability',
+        endpoint: 'search/title',
+        params: {
+            country: 'us',
+            title: filmName,
+            output_language: 'en',
+            show_type: 'all',
+        },
+    });
 
     if (loadingAiRecommendation || omdbInfo.loading) {
         // return the code for a loader here.
