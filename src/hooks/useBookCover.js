@@ -1,18 +1,15 @@
 import { useEffect, useMemo, useState } from 'react';
 import axios from 'axios';
 
-export default function useOMDB(title) {
+export default function useBookCover({ title, author }) {
     const [loading, setLoading] = useState(false);
     const [data, setData] = useState();
     const [error, setError] = useState();
-    const omdb = useMemo(() => axios.create({
-        baseURL: 'http://www.omdbapi.com',
+    const bookCover = useMemo(() => axios.create({
+        baseURL: 'http://bookcover.longitood.com/bookcover',
         headers: {
             Accept: 'application/json, text/plain, */*',
         },
-        params: {
-            apikey: process.env.REACT_APP_OMDB_API_KEY,
-        }
     }), []);
 
     useEffect(() => {
@@ -21,9 +18,10 @@ export default function useOMDB(title) {
             setLoading(false);
             return;
         }
-        omdb.get('', {
+        bookCover.get('', {
             params: {
-                t: title,
+                book_title: title,
+                author_name: author,
             }
         }).then((res) => {
             setData(res.data);
@@ -32,7 +30,7 @@ export default function useOMDB(title) {
         }).finally(() => {
             setLoading(false);
         });
-    }, [omdb, title]);
+    }, [title, author, bookCover]);
 
     return { loading, data, error };
 }
