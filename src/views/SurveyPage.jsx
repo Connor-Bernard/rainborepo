@@ -3,7 +3,9 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 import { Link, useNavigate } from 'react-router-dom';
 import styles from './style/SurveyPage.module.css';
 import classname from 'classnames';
-import surveyData from '../data/surveyQuestions.json';
+import movieSurveyData from '../data/movieQuestions.json';
+import bookSurveyData from '../data/bookQuestions.json';
+import mediaFormSurveyData from '../data/mediaFormQuestion.json';
 
 import 'survey-core/defaultV2.min.css';
 import { Survey } from 'survey-react-ui';
@@ -19,11 +21,14 @@ export default function SurveyPage() {
         apiKey: process.env.REACT_APP_SURVEY_PAGE_NIGGIN_API_KEY,
     });
 
-    const survey = new Model(surveyData);
-    survey.onComplete.add((sender) => {
+    const movieSurvey = new Model(movieSurveyData);
+    const bookSurvey = new Model(bookSurveyData);
+    const mediaFormSurvey = new Model(mediaFormSurveyData);
+
+    movieSurvey.onComplete.add((sender) => {
         setError('');
         setLoading(true);
-        const surveyResponseObject = surveyData.elements.reduce((acc, curr) => {
+        const surveyResponseObject = movieSurveyData.elements.reduce((acc, curr) => {
             console.log(sender.data);
             acc.push({
                 question: curr.title,
@@ -42,7 +47,19 @@ export default function SurveyPage() {
         });
     });
 
-    survey.applyTheme({
+    movieSurvey.applyTheme({
+        "cssVariables": {
+            "--sjs-general-backcolor-dim": "#29161d",
+            "--sjs-primary-backcolor": "#085ED7"
+        }
+    });
+    bookSurvey.applyTheme({
+        "cssVariables": {
+            "--sjs-general-backcolor-dim": "#29161d",
+            "--sjs-primary-backcolor": "#085ED7"
+        }
+    });
+    mediaFormSurvey.applyTheme({
         "cssVariables": {
             "--sjs-general-backcolor-dim": "#29161d",
             "--sjs-primary-backcolor": "#085ED7"
@@ -63,7 +80,10 @@ export default function SurveyPage() {
                 </div>
             </div>
             <div>
-                <Survey model={survey} />
+                <Survey model={mediaFormSurvey} />
+                {/* todo: conditionally render surveys based on first response */}
+                <Survey model={movieSurvey} />
+                <Survey model={bookSurvey} />
                 {error &&
                     <div className="alert alert-danger" role="alert">
                         {error}

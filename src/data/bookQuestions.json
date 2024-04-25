@@ -1,0 +1,46 @@
+{
+    "elements": [{
+        "name": "representation",
+        "title": "Is there any specific form of LGBTQIA representation you want to see?",
+        "type": "checkbox",
+        "choices": [
+            "Lesbian representation", "Gay representation", "Bisexual representation", "Transgender representation"
+        ]
+    }, {
+        "name": "genderIdentity",
+        "title": "What Gender Identity are you looking for in the film?",
+        "type": "checkbox",
+        "choices": [
+            "Male", "Female", "Non-binary"
+        ]
+    }, {
+        "name": "genre",
+        "title": "Preferred Movie Genres (Select all that apply)",
+        "type": "checkbox",
+        "colCount": 2,
+        "choices": [
+            "Nonfiction", "Drama", "Romance", "Comedy", "Documentary", "Horror", "Thriller", "Action", "Science Fiction", "Fantasy", "Animation"
+        ]
+    }, {
+        "name": "series",
+        "title": "Do you want a standalone book or a series?",
+        "type": "checkbox",
+        "choices": [
+            "Standalone", "Series"
+        ]
+    }, {
+        "name": "length",
+        "title": "How long do you want your book to be?",
+        "type": "checkbox",
+        "choices": [
+            "Short Story", "Chapter Book"
+        ]
+    }, {
+        "name": "additional",
+        "title": "Is there anything else we should know?",
+        "type": "comment",
+        "description": "Enter any additional information to help further customize your recommendations",
+        "placeholder": "I want a book with...",
+        "maxLength": 500
+    }]
+}
