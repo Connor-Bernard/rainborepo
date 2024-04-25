@@ -10,16 +10,16 @@
     text-align: center;
     margin-right: 20px;
 }
-.movie-details {
+.movieDetails {
     flex: 1;
     text-align: left; 
 }
-.movie-poster {
+.moviePoster {
     max-width: 100%;
     height: auto;
     max-height: 80vh;
 }
-.star-rating {
+.starRating {
     font-size: 24px;
     color: orange;
     margin-top: 10px;

@@ -64,13 +64,13 @@ export default function RecPage() {
                 </div>
             </div>
 
-            <div className="container">
+            <div className={classname(styles.container)}>
                 {omdbInfo?.data && omdbInfo.data['Poster'] &&
-                    <div className="thumbnail">
-                        <img src={omdbInfo.data['Poster']} alt="Movie Poster" className="movie-poster" />
+                    <div className={classname(styles.thumbnail)}>
+                        <img src={omdbInfo.data['Poster']} alt="Movie Poster" className={classname(styles.moviePoster)} />
                     </div>
                 }
-                <div className="movie-details">
+                <div className={classname(styles.movieDetails)}>
                     <h2 id="movie-name">{filmName}</h2>
                     <p id="movie-description">{omdbInfo?.data && omdbInfo.data['Plot'] &&
                         <>
@@ -89,12 +89,12 @@ export default function RecPage() {
                         }
                     </p>
                     {omdbInfo?.data?.imdbRating &&
-                        <div id="star-rating" className="star-rating">
+                        <div id="star-rating" className={classname(styles.starRating)}>
                             {omdbInfo.data.imdbRating}/10
                         </div>
                     }
                     {omdbInfo?.data && omdbInfo.data['Genre'] &&
-                        <p className="genre">{omdbInfo.data['Genre']}</p>
+                        <p className={classname(styles.genre)}>{omdbInfo.data['Genre']}</p>
                     }
                 </div>
             </div>
