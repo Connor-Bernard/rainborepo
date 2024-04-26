@@ -91,7 +91,10 @@ export default function PromptPage() {
                                 {error}
                             </div>
                         }
-                        <button type="submit" className="btn btn-primary">recommend rainborepo!</button>
+                        <div>
+                        <button type="submit" className="btn btn-secondary">Give me a film!</button>
+                        <button type="submit" className="btn btn-secondary" style={{ marginLeft: '10px' }}>Give me a book!</button>
+                        </div>
                     </div>
                 </form>
             </div>

@@ -62,6 +62,8 @@ export default function RecPage() {
     if (loadingAiRecommendation || omdbInfo.loading) {
         // return the code for a loader here.
     }
+    //sample 
+    const streamingServices = ['Netflix', 'max', 'Disney'];
 
     return (
         <div>
@@ -106,6 +108,16 @@ export default function RecPage() {
                     {omdbInfo?.data && omdbInfo.data['Genre'] &&
                         <p className={classname(styles.genre)}>{omdbInfo.data['Genre']}</p>
                     }
+                    
+                    <div className={classname(styles.streamingServices)} style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, 100px)', gap: '10px', justifyContent: 'center' }}>
+                        
+                        {streamingServices.map((service) => (
+                            
+                            console.log(service),
+                            
+                            <img src={`./images/${service}.png`} alt={service} className={styles.streamingServices}  style={{ width: '100px', height: '100px', objectFit: 'contain', margin: '0 10px 10px 0'}}/>
+                        ))}
+                    </div>
                 </div>
             </div>
         </div>
