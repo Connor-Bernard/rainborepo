@@ -8,7 +8,7 @@
         ]
     }, {
         "name": "genderIdentity",
-        "title": "What Gender Identity are you looking for in the film?",
+        "title": "What gender identity representation are you looking for in the film?",
         "type": "checkbox",
         "choices": [
             "Male", "Female", "Non-binary"
@@ -22,7 +22,7 @@
         ]
     }, {
         "name": "genre",
-        "title": "Preferred Movie Genres (Select all that apply)",
+        "title": "Preferred Film Genres (Select all that apply)",
         "type": "checkbox",
         "colCount": 2,
         "choices": [
