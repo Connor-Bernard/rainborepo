@@ -3,9 +3,8 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 import { Link, useNavigate } from 'react-router-dom';
 import styles from './style/SurveyPage.module.css';
 import classname from 'classnames';
-import movieSurveyData from '../data/movieQuestions.json';
+import filmSurveyData from '../data/movieQuestions.json';
 import bookSurveyData from '../data/bookQuestions.json';
-import mediaFormSurveyData from '../data/mediaFormQuestion.json';
 
 import 'survey-core/defaultV2.min.css';
 import { Survey } from 'survey-react-ui';
@@ -21,14 +20,13 @@ export default function SurveyPage() {
         apiKey: process.env.REACT_APP_SURVEY_PAGE_NIGGIN_API_KEY,
     });
 
-    const movieSurvey = new Model(movieSurveyData);
+    const filmSurvey = new Model(filmSurveyData);
     const bookSurvey = new Model(bookSurveyData);
-    const mediaFormSurvey = new Model(mediaFormSurveyData);
 
-    movieSurvey.onComplete.add((sender) => {
+    filmSurvey.onComplete.add((sender) => {
         setError('');
         setLoading(true);
-        const surveyResponseObject = movieSurveyData.elements.reduce((acc, curr) => {
+        const surveyResponseObject = filmSurveyData.elements.reduce((acc, curr) => {
             console.log(sender.data);
             acc.push({
                 question: curr.title,
@@ -47,7 +45,7 @@ export default function SurveyPage() {
         });
     });
 
-    movieSurvey.applyTheme({
+    filmSurvey.applyTheme({
         "cssVariables": {
             "--sjs-general-backcolor-dim": "#29161d",
             "--sjs-primary-backcolor": "#085ED7"
@@ -59,18 +57,50 @@ export default function SurveyPage() {
             "--sjs-primary-backcolor": "#085ED7"
         }
     });
-    mediaFormSurvey.applyTheme({
-        "cssVariables": {
-            "--sjs-general-backcolor-dim": "#29161d",
-            "--sjs-primary-backcolor": "#085ED7"
-        }
-    });
 
     if (loading) {
         // TODO: return the code for a loader here.
     }
+
+    const [ media , setMedia ] = useState("film");
+
+    const [ selectedSurvey , setSelectedSurvey ] = useState(filmSurvey);
+
+    const setFilm = () => {
+        setMedia("film");
+        setSelectedSurvey(filmSurvey);
+    }
+
+    const setBook = () => {
+        setMedia("book");
+        setSelectedSurvey(bookSurvey);
+    }
+
+    const filmBtn = media === "film" ?
+    <h2 onClick={setFilm} style={{
+        backgroundColor: "pink",
+        padding: "3px"
+    }}>Find a Film!</h2>
+    :
+    <h2 onClick={setFilm} style={{
+        backgroundColor: "grey",
+        padding: "3px"
+    }}>Find a Film!</h2>
+
+    const bookBtn = media === "book" ?
+    <h2 onClick={setBook} style={{
+        backgroundColor: "pink",
+        padding: "3px"
+    }}>Find a Book!</h2>
+    :
+    <h2 onClick={setBook} style={{
+        backgroundColor: "grey",
+        padding: "3px"
+    }}>Find a Book!</h2>
+
     return (
         <>
+
             <div className={classname(styles.taskHeader)}>
                 <div>
                     <Link to="/" className={classname(styles.button)} id={styles.homeButton}>Home</Link>
@@ -79,11 +109,18 @@ export default function SurveyPage() {
                     <h1>rainborepo</h1>
                 </div>
             </div>
+
+            <div className={classname(styles.toggleContainer)}>
+                <div className={classname(styles.toggle)}>
+                    {filmBtn}
+                </div>
+                <div className={classname(styles.toggle)}>
+                    {bookBtn}
+                </div>
+            </div>
+            
             <div>
-                <Survey model={mediaFormSurvey} />
-                {/* todo: conditionally render surveys based on first response */}
-                <Survey model={movieSurvey} />
-                <Survey model={bookSurvey} />
+                <Survey model={selectedSurvey} />
                 {error &&
                     <div className="alert alert-danger" role="alert">
                         {error}
