@@ -1,17 +1,20 @@
 .container {
     display: flex;
     height: 90vh;
+
 }
 .button {
+    color: white;
     flex: 1;
     text-align: center;
     line-height: 60px; 
     border: 2px solid transparent;
     border-radius: 5px;
-    font-size: 18px;
+    font-size: 1.75rem;
     font-weight: bold;
     text-decoration: none;
     cursor: pointer;
+    display: inline-block; 
     justify-content: center;
     align-content: center;
 }
@@ -20,23 +23,29 @@
 }
 .smallFont {
     font-size: 18px;
+    padding: 0 60px;
+    box-sizing: border-box; 
+    display: inline-block; 
+    line-height: normal; 
 }
 .button.red {
-    background-color: #29161d;
-    color: white;
+    background-color: #DB2B39;
+    color: #f6f4f3;
 }
 .button.blue {
-    background-color: #fa9495;
-    color: white;
+    background-color: #29335C;
+    color: #f6f4f3;
 }
 
 /* header bar style - inspired by assignment 2 task 5*/
 .taskHeader {
+    background: linear-gradient(to right, #DB2B39 50%, #29335C 50%);
+    color: #f6f4f3;
+
     display: flex !important;
     flex-grow: 1 !important;
     height: 10vh;
     justify-content: space-between !important;
-    margin-left: 5px !important;
 
     & h1 {
         margin-top: 3vh !important;
@@ -53,10 +62,10 @@
     #inputText input[type="text"] {
         width: 100% !important;
         padding: 10px;
-        box-sizing: border-box !important; /* Ensures padding is included in the width */
+        box-sizing: border-box !important; 
         border-radius: 5px !important;
-        border: 1px solid #ced4da !important; /* Bootstrap's default input border color */
-        background-color: #fff !important; /* Bootstrap's default input background color */
+        border: 1px solid #ced4da !important;
+        background-color: #fff !important;
         margin-bottom: 10px !important;
     }
     
