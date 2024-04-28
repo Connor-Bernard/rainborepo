@@ -36,7 +36,6 @@ export default function RecPage() {
             if (err.status === 400) {
                 console.error('Could not generate review for specified movie.');
             }
-            navigate('/');
         });
     }, [filmName, navigate, postNoggin]);
 
@@ -113,7 +112,7 @@ export default function RecPage() {
                         
                         {streamingServices.map((service) => (
                             
-                            console.log(service),
+                            console.log(service) &&
                             
                             <img src={`./images/${service}.png`} alt={service} className={styles.streamingServices}  style={{ width: '100px', height: '100px', objectFit: 'contain', margin: '0 10px 10px 0'}}/>
                         ))}
