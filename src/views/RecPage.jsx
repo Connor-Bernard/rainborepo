@@ -11,12 +11,13 @@ import classname from 'classnames';
 export default function RecPage() {
     const [loadingAiRecommendation, setLoadingAiRecommendation] = useState(false);
     const [aiRecommendation, setAiRecommendation] = useState('');
+    const [streamingServices, setStreamingServices] = useState([]);
     const [searchParams] = useSearchParams();
 
     const navigate = useNavigate();
 
     const filmName = useMemo(() => {
-        return sanitize(searchParams.get('rec'));
+        return sanitize(searchParams.get('film'));
     }, [searchParams]);
 
     const postNoggin = useReagent({
@@ -47,7 +48,7 @@ export default function RecPage() {
         }
     }, [omdbInfo.error, navigate]);
 
-    const providers = useRapid({
+    const rapidInfo = useRapid({
         service: 'streaming-availability',
         endpoint: 'search/title',
         params: {
@@ -58,11 +59,17 @@ export default function RecPage() {
         },
     });
 
-    if (loadingAiRecommendation || omdbInfo.loading) {
-        // return the code for a loader here.
+    useEffect(() => {
+        let currServices = [];
+        rapidInfo.data?.result.forEach((resObject) => {
+            currServices = currServices.concat(resObject?.streamingInfo?.us?.map(s => s.service));
+        });
+        setStreamingServices([...new Set(currServices)]);
+    }, [rapidInfo.data]);
+
+    if (loadingAiRecommendation || omdbInfo.loading || rapidInfo.loading) {
+        // TODO: return the code for a loader here.
     }
-    //sample 
-    const streamingServices = ['Netflix', 'max', 'Disney'];
 
     return (
         <div>
@@ -71,15 +78,22 @@ export default function RecPage() {
                     <Link to="/" className={classname(styles.button)} id={styles.homeButton}>Home</Link>
                 </div>
                 <div style={{ display: 'flex', alignItems: 'center' }}>
-                <img src={`./images/rainborepo-colored.png`} alt="Logo" style={{ width: '100px', height: '100px', marginRight: '10px',verticalAlign: 'middle' }} />
-                    <h1 style={{ margin: '0',verticalAlign: 'middle', lineHeight: '1'  }}>rainborepo</h1>
-                </div>  
+                    <img
+                        src={`./images/rainborepo-colored.png`}
+                        alt="Logo" style={{ width: '100px', height: '100px', marginRight: '10px', verticalAlign: 'middle' }}
+                    />
+                    <h1 style={{ margin: '0', verticalAlign: 'middle', lineHeight: '1' }}>rainborepo</h1>
+                </div>
             </div>
 
             <div className={classname(styles.container)}>
                 {omdbInfo?.data && omdbInfo.data['Poster'] &&
                     <div className={classname(styles.thumbnail)}>
-                        <img src={omdbInfo.data['Poster']} alt="Movie Poster" className={classname(styles.moviePoster)} />
+                        <img
+                            src={omdbInfo.data['Poster']}
+                            alt="Movie Poster"
+                            className={classname(styles.moviePoster)}
+                        />
                     </div>
                 }
                 <div className={classname(styles.movieDetails)}>
@@ -108,14 +122,18 @@ export default function RecPage() {
                     {omdbInfo?.data && omdbInfo.data['Genre'] &&
                         <p className={classname(styles.genre)}>{omdbInfo.data['Genre']}</p>
                     }
-                    
-                    <div className={classname(styles.streamingServices)} style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, 100px)', gap: '10px', justifyContent: 'center' }}>
-                        
-                        {streamingServices.map((service) => (
-                            
-                            console.log(service) &&
-                            
-                            <img src={`./images/${service}.png`} alt={service} className={styles.streamingServices}  style={{ width: '100px', height: '100px', objectFit: 'contain', margin: '0 10px 10px 0'}}/>
+
+                    <div
+                        className={classname(styles.streamingServices)}
+                        style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, 100px)', gap: '10px', justifyContent: 'center' }}
+                    >
+                        {streamingServices.map((service) => service && (
+                            <img
+                                src={`./images/${service}.png`}
+                                alt={service}
+                                className={styles.streamingServices}
+                                style={{ width: '100px', height: '100px', objectFit: 'contain', margin: '0 10px 10px 0' }}
+                            />
                         ))}
                     </div>
                 </div>

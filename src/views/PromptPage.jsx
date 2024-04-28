@@ -46,7 +46,7 @@ export default function PromptPage() {
         postNoggin({
             description: inputField.current.value,
         }).then((res) => {
-            navigate(`/recommendation?rec=${res.data}`)
+            navigate(`/recommendation?film=${res.data}`)
         }).catch((err) => {
             if (err.status === 400) {
                 setError('The provided prompt was not specific enough.');
