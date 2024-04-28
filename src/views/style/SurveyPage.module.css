@@ -65,6 +65,7 @@ body {
     display: flex !important;
     justify-content: center;
     width: 100% !important;
+    gap: 3em;
 }
 
 .toggle {
@@ -79,4 +80,3 @@ body {
     margin-right: 2vw;
     margin-left: 2vw;
 }
-

@@ -15,11 +15,16 @@ export default function SurveyPage() {
     const [loading, setLoading] = useState(false);
     const [error, setError] = useState('');
     const navigate = useNavigate();
-    const postNoggin = useReagent({
+    const postMoviesNoggin = useReagent({
         nogginId: 'mechanical-blackbird-3290',
-        apiKey: process.env.REACT_APP_SURVEY_PAGE_NIGGIN_API_KEY,
+        apiKey: process.env.REACT_APP_SURVEY_PAGE_MOVIE_NOGGIN_API_KEY,
+    });
+    const postBooksNoggin = useReagent({
+        nogginId: 'deep-bass-2092',
+        apiKey: process.env.REACT_APP_SURVEY_PAGE_BOOK_NOGGIN_API_KEY,
     });
 
+    // TODO: throw this all into a single callback.
     const filmSurvey = new Model(filmSurveyData);
     const bookSurvey = new Model(bookSurveyData);
 
@@ -27,15 +32,14 @@ export default function SurveyPage() {
         setError('');
         setLoading(true);
         const surveyResponseObject = filmSurveyData.elements.reduce((acc, curr) => {
-            console.log(sender.data);
             acc.push({
                 question: curr.title,
                 response: sender.data[curr.name],
             });
             return acc;
         }, []);
-        postNoggin({ surveyResponse: JSON.stringify(surveyResponseObject) }).then((res) => {
-            navigate(`/recommendation?rec=${res.data}`);
+        postMoviesNoggin({ surveyResponse: JSON.stringify(surveyResponseObject) }).then((res) => {
+            navigate(`/recommendation?film=${res.data}`);
         }).catch((err) => {
             if (err.status === 400) {
                 setError('Could not generate a recommendation');
@@ -43,6 +47,28 @@ export default function SurveyPage() {
         }).finally(() => {
             setLoading(false);
         });
+    });
+
+    bookSurvey.onComplete.add((sender) => {
+        setError('');
+        setLoading(true);
+        const surveyResponseObject = filmSurveyData.elements.reduce((acc, curr) => {
+            acc.push({
+                question: curr.title,
+                response: sender.data[curr.name],
+            });
+            return acc;
+        }, []);
+        postBooksNoggin({ surveyResponse: JSON.stringify(surveyResponseObject) }).then((res) => {
+            navigate(`/recommendation?book=${res?.data?.book}&author=${res?.data?.author}`);
+        }).catch((err) => {
+            if (err.status === 400) {
+                setError('Could not generate a recommendation');
+            }
+        }).finally(() => {
+            setLoading(false);
+        });
+
     });
 
     const theme = {
@@ -66,45 +92,7 @@ export default function SurveyPage() {
         // TODO: return the code for a loader here.
     }
 
-    const [ media , setMedia ] = useState("film");
-
-    const [ selectedSurvey , setSelectedSurvey ] = useState(filmSurvey);
-
-    const setFilm = () => {
-        setMedia("film");
-        setSelectedSurvey(filmSurvey);
-    }
-
-    const setBook = () => {
-        setMedia("book");
-        setSelectedSurvey(bookSurvey);
-    }
-
-    const filmBtn = media === "film" ?
-    <h2 onClick={setFilm} style={{
-        backgroundColor: "#FAF8F0",
-        color: "black",
-        padding: "3px"
-    }}>Find a Film!</h2>
-    :
-    <h2 onClick={setFilm} style={{
-        backgroundColor: "grey",
-        color: "black",
-        padding: "3px"
-    }}>Find a Film!</h2>
-
-    const bookBtn = media === "book" ?
-    <h2 onClick={setBook} style={{
-        backgroundColor: "#FAF8F0",
-        color: "black",
-        padding: "3px"
-    }}>Find a Book!</h2>
-    :
-    <h2 onClick={setBook} style={{
-        backgroundColor: "grey",
-        color: "black",
-        padding: "3px"
-    }}>Find a Book!</h2>
+    const [mediaType, setMediaType] = useState('film');
 
     return (
         <>
@@ -113,23 +101,30 @@ export default function SurveyPage() {
                 <div>
                     <Link to="/" className={classname(styles.button)} id={styles.homeButton}>Home</Link>
                 </div>
-                <div style={{ display: 'flex', alignItems: 'center' }}>
-                <img src={`./images/rainborepo-colored.png`} alt="Logo" style={{ width: '100px', height: '100px', marginRight: '10px',verticalAlign: 'middle' }} />
-                    <h1 style={{ margin: '0',verticalAlign: 'middle', lineHeight: '1'  }}>rainborepo</h1>
-                </div>  
+                <div>
+                    <h1>rainborepo</h1>
+                </div>
             </div>
 
             <div className={classname(styles.toggleContainer)}>
-                <div className={classname(styles.toggle)}>
-                    {filmBtn}
-                </div>
-                <div className={classname(styles.toggle)}>
-                    {bookBtn}
-                </div>
+                <button
+                    type="button"
+                    className={`btn ${mediaType === 'film' ? 'btn-light' : 'btn-outline-light'}`}
+                    onClick={() => setMediaType('film')}
+                >
+                    Film
+                </button>
+                <button
+                    type="button"
+                    className={`btn ${mediaType === 'book' ? 'btn-light' : 'btn-outline-light'}`}
+                    onClick={() => setMediaType('book')}
+                >
+                    Book
+                </button>
             </div>
-            
+
             <div>
-                <Survey model={selectedSurvey} />
+                <Survey model={mediaType === 'book' ? bookSurvey : filmSurvey} />
                 {error &&
                     <div className="alert alert-danger" role="alert">
                         {error}
