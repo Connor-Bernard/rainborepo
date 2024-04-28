@@ -113,9 +113,10 @@ export default function SurveyPage() {
                 <div>
                     <Link to="/" className={classname(styles.button)} id={styles.homeButton}>Home</Link>
                 </div>
-                <div>
-                    <h1>rainborepo</h1>
-                </div>
+                <div style={{ display: 'flex', alignItems: 'center' }}>
+                <img src={`./images/rainborepo-colored.png`} alt="Logo" style={{ width: '100px', height: '100px', marginRight: '10px',verticalAlign: 'middle' }} />
+                    <h1 style={{ margin: '0',verticalAlign: 'middle', lineHeight: '1'  }}>rainborepo</h1>
+                </div>  
             </div>
 
             <div className={classname(styles.toggleContainer)}>
