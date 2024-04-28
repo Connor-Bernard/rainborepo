@@ -60,7 +60,7 @@ export default function PromptPage() {
         // TODO: return the code for a loader here.
     }
     return (
-        <div>
+        <div className={classname(styles.body)}>
             <div className={classname(styles.taskHeader)}>
                 <div>
                     <Link to="/" className={classname(styles.button)} id={styles.homeButton}>Home</Link>

@@ -4,7 +4,7 @@
 
 }
 .button {
-    color: white;
+    color: #FAF8F0;
     flex: 1;
     text-align: center;
     line-height: 60px; 
@@ -29,18 +29,20 @@
     line-height: normal; 
 }
 .button.red {
-    background-color: #DB2B39;
-    color: #f6f4f3;
+    background-color: #222222;
+    color: #FAF8F0;
+    border-radius: 0px;
 }
 .button.blue {
-    background-color: #29335C;
-    color: #f6f4f3;
+    background-color: #4B4E6D;
+    color: #FAF8F0;
+    border-radius: 0px;
 }
 
 /* header bar style - inspired by assignment 2 task 5*/
 .taskHeader {
-    background: linear-gradient(to right, #DB2B39 50%, #29335C 50%);
-    color: #f6f4f3;
+    background: linear-gradient(to right, #222222 50%, #4B4E6D 50%);
+    color: #FAF8F0;
 
     display: flex !important;
     flex-grow: 1 !important;

@@ -45,17 +45,21 @@ export default function SurveyPage() {
         });
     });
 
+    const theme = {
+        "--sjs-general-backcolor": "#FAF8F0", // background of survey question boxes
+        "--sjs-general-backcolor-dim": "#4B4E6D", // background of entire survey
+        "--sjs-general-forecolor": "#000000", // color of text for questions
+        "--sjs-primary-backcolor": "#222222", // background of complete button
+        "--sjs-primary-backcolor-dark": "#4B4E6D", // background of complete button when hovered over
+        "--sjs-general-backcolor-dim-light": "#F5F1E0", // background color of input boxes (checkboxes and text)
+        "--sjs-general-backcolor-dim-dark": "#222222", // background color of input boxes (checkboxes and text) when hovered over
+    };
+
     filmSurvey.applyTheme({
-        "cssVariables": {
-            "--sjs-general-backcolor-dim": "#29161d",
-            "--sjs-primary-backcolor": "#085ED7"
-        }
+        "cssVariables": theme
     });
     bookSurvey.applyTheme({
-        "cssVariables": {
-            "--sjs-general-backcolor-dim": "#29161d",
-            "--sjs-primary-backcolor": "#085ED7"
-        }
+        "cssVariables": theme
     });
 
     if (loading) {
@@ -78,23 +82,27 @@ export default function SurveyPage() {
 
     const filmBtn = media === "film" ?
     <h2 onClick={setFilm} style={{
-        backgroundColor: "pink",
+        backgroundColor: "#FAF8F0",
+        color: "black",
         padding: "3px"
     }}>Find a Film!</h2>
     :
     <h2 onClick={setFilm} style={{
         backgroundColor: "grey",
+        color: "black",
         padding: "3px"
     }}>Find a Film!</h2>
 
     const bookBtn = media === "book" ?
     <h2 onClick={setBook} style={{
-        backgroundColor: "pink",
+        backgroundColor: "#FAF8F0",
+        color: "black",
         padding: "3px"
     }}>Find a Book!</h2>
     :
     <h2 onClick={setBook} style={{
         backgroundColor: "grey",
+        color: "black",
         padding: "3px"
     }}>Find a Book!</h2>
 
