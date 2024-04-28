@@ -10,34 +10,54 @@ body {
 }
 
 .button {
-    flex: 1 !important;
-    text-align: center !important;
-    line-height: 60px !important; 
-    border: 2px solid transparent !important;
-    border-radius: 5px !important;
-    font-size: 18px !important;
-    font-weight: bold !important;
-    text-decoration: none !important;
-    cursor: pointer !important;
-    justify-content: center !important;
-    align-content: center !important;
     color: #FAF8F0;
+    flex: 1;
+    text-align: center;
+    line-height: 60px; 
+    border: 2px solid transparent;
+    border-radius: 5px;
+    font-size: 1.75rem;
+    font-weight: bold;
+    text-decoration: none;
+    cursor: pointer;
+    display: inline-block; 
+    justify-content: center;
+    align-content: center;
 }
 
 /* header bar style - inspired by assignment 2 task 5*/
 .taskHeader {
+   
+
     display: flex !important;
     flex-grow: 1 !important;
+    height: 10vh;
     justify-content: space-between !important;
-
-    margin-bottom: 1em !important;
-    margin-left: 5px !important;
 
     & h1 {
         margin-top: 3vh !important;
         margin-bottom: 0 !important;
         margin-right: 1em !important; 
         font-size: 1.75rem !important; 
+    }
+    #inputText {
+        display: flex !important;
+        flex-direction: column !important;
+        align-items: center !important;
+    }
+    
+    #inputText input[type="text"] {
+        width: 100% !important;
+        padding: 10px;
+        box-sizing: border-box !important; 
+        border-radius: 5px !important;
+        border: 1px solid #ced4da !important;
+        background-color: #fff !important;
+        margin-bottom: 10px !important;
+    }
+    
+    .btn-primary {
+        width: 100% !important;
     }
 }
 
