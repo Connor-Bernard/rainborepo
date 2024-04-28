@@ -75,3 +75,11 @@
         width: 100% !important;
     }
 }
+
+.aboutButton {
+    background-color: #FAF8F0;
+    border: none;
+    color: black;
+    padding: 0px 10px;
+    font-size: 18px;
+}

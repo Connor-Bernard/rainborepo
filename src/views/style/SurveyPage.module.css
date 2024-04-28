@@ -21,6 +21,7 @@ body {
     cursor: pointer !important;
     justify-content: center !important;
     align-content: center !important;
+    color: #FAF8F0;
 }
 
 /* header bar style - inspired by assignment 2 task 5*/
