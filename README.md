@@ -21,7 +21,7 @@ To work with this application, you will need to set up the following environment
 
 ### Noggin API Keys
 
-Noggin API keys are provided on request of the developers.  Please make a request by emailing [Connor Bernard](connorbernard@berkeley.edu) directly.
+Noggin API keys are provided on request of the developers.  Please make a request by emailing [Connor Bernard](mailto:connorbernard@berkeley.edu) directly.
 
 ### OMDB API Key
 
