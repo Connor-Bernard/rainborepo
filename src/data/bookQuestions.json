@@ -19,7 +19,7 @@
         "type": "checkbox",
         "colCount": 2,
         "choices": [
-            "Nonfiction", "Drama", "Romance", "Comedy", "Documentary", "Horror", "Thriller", "Action", "Science Fiction", "Fantasy", "Animation"
+            "Nonfiction", "Drama", "Romance", "Comedy", "Horror", "Thriller", "Action", "Science Fiction", "Fantasy", "Historical"
         ]
     }, {
         "name": "series",
