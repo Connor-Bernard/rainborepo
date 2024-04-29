@@ -2,7 +2,7 @@ import React, { useEffect, useMemo, useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import { sanitize } from 'dompurify';
 import { useSearchParams } from 'react-router-dom';
-import useBookCover from '../hooks/useBookCover';
+import useOpenLibrary from '../hooks/useOpenLibrary';
 import useReagent from '../hooks/useReagent';
 import styles from './style/RecPage.module.css';
 import classname from 'classnames';
@@ -20,14 +20,16 @@ export default function MovieRecPage() {
         return [bookTitle, author];
     }, [searchParams]);
 
-    const bookCoverInfo = useBookCover({ title, author });
+    const bookInfo = useOpenLibrary({
+        stub: 'search.json',
+        params: { title, author, limit: 1, fields: 'cover_edition_key' },
+    });
 
     useEffect(() => {
-        if (bookCoverInfo.error) {
-            console.debug(bookCoverInfo.data);
-            // navigate('/');
+        if (bookInfo.error) {
+            navigate('/');
         }
-    }, [bookCoverInfo.error, navigate]);
+    }, [bookInfo.error, navigate]);
 
     const postNoggin = useReagent({
         nogginId: 'written-haddock-8647',
@@ -49,7 +51,7 @@ export default function MovieRecPage() {
         });
     }, [author, title, postNoggin]);
 
-    if (loadingAiRecommendation || bookCoverInfo.loading) {
+    if (loadingAiRecommendation || bookInfo.loading) {
         // TODO: return the code for a loader here.
     }
 
@@ -69,11 +71,11 @@ export default function MovieRecPage() {
             </div>
 
             <div className={classname(styles.container)}>
-                {bookCoverInfo?.data &&
+                {bookInfo?.data &&
                     <div className={classname(styles.thumbnail)}>
                         <img
-                            src={bookCoverInfo.data}
-                            alt="Movie Poster"
+                            src={`https://covers.openlibrary.org/b/olid/${bookInfo.data?.docs[0]?.cover_edition_key}-L.jpg`}
+                            alt="Book Cover"
                             className={classname(styles.moviePoster)}
                         />
                     </div>
