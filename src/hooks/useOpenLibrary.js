@@ -1,8 +1,8 @@
 import { useEffect, useMemo, useRef, useState } from 'react';
 import axios from 'axios';
-import isDeepEqual from 'fast-deep-equal/react';
+import isDeepEqual from 'fast-deep-equal';
 
-export default function useRapid({ service, endpoint, params } = { params: {} }) {
+export default function useOpenLibrary({ subdomain, stub, params }) {
     const [loading, setLoading] = useState(false);
     const [data, setData] = useState();
     const [error, setError] = useState();
@@ -12,26 +12,25 @@ export default function useRapid({ service, endpoint, params } = { params: {} })
         localParams.current = params;
     }
 
-    const host = `${service}.p.rapidapi.com`;
-    const rapid = useMemo(() => axios.create({
-        baseURL: `https://${host}`,
+    const openLibrary = useMemo(() => axios.create({
+        baseURL: `https://${subdomain ? subdomain + '.' : ''}openlibrary.org`,
         headers: {
-            'X-RapidAPI-Key': process.env.REACT_APP_RAPID_API_KEY,
-            'X-RapidAPI-Host': host,
-        }
-    }), [host]);
+            Accept: 'application/json, text/plain, */*',
+        },
+    }), [subdomain]);
 
     useEffect(() => {
         setLoading(true);
-        rapid.get(endpoint, { params: localParams.current }).then((res) => {
+        openLibrary.get(stub, {
+            params: localParams.current,
+        }).then((res) => {
             setData(res.data);
         }).catch((err) => {
-            console.debug('caught error', err);
             setError(err);
         }).finally(() => {
             setLoading(false);
         });
-    }, [rapid, endpoint]);
+    }, [openLibrary, stub]);
 
     return { loading, data, error };
 }
