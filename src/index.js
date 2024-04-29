@@ -9,7 +9,6 @@ import RecPage from './views/RecPage';
 import PromptPage from './views/PromptPage';
 import SurveyPage from './views/SurveyPage';
 import LandingPage from './views/Landing';
-import About from './views/About';
 
 const router = createBrowserRouter([
   {
@@ -27,10 +26,6 @@ const router = createBrowserRouter([
   {
     path: '/survey',
     element: <SurveyPage />
-  },
-  {
-    path: '/about',
-    element: <About />,
   },
 ]);
 
