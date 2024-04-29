@@ -12,7 +12,7 @@ export default function useReagent({ nogginId, apiKey }) {
     }), [nogginId, apiKey]);
 
     noggin.interceptors.response.use((res) => {
-        if (res.data === null) {
+        if (res.data === null || res.data?.title === null || res.data?.author === null) {
             return Promise.reject({ ...res, status: 400 });
         }
         return res;

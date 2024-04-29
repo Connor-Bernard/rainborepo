@@ -11,6 +11,7 @@ export default function PromptPage() {
     const [loading, setLoading] = useState(false);
     const [error, setError] = useState('');
     const [placeholderIndex, setPlaceholderIndex] = useState(0);
+    const [mediaType, setMediaType] = useState();
 
     const navigate = useNavigate();
 
@@ -29,12 +30,18 @@ export default function PromptPage() {
         return () => clearInterval(interval);
     }, [placeholderTexts]);
 
-    const postNoggin = useReagent({
+    const postFilmNoggin = useReagent({
         nogginId: 'jolly-lizard-1782',
-        apiKey: process.env.REACT_APP_PROMPT_PAGE_NOGGIN_API_KEY,
+        apiKey: process.env.REACT_APP_PROMPT_PAGE_FILM_NOGGIN_API_KEY,
+    });
+
+    const postBookNoggin = useReagent({
+        nogginId: 'round-reindeer-8693',
+        apiKey: process.env.REACT_APP_PROMPT_PAGE_BOOK_NOGGIN_API_KEY,
     });
 
     function handleSubmit(e) {
+        console.debug(e);
         e.preventDefault();
         const userPrompt = sanitize(inputField.current.value);
         if (!userPrompt) {
@@ -43,17 +50,32 @@ export default function PromptPage() {
         }
         setError('');
         setLoading(true);
-        postNoggin({
-            description: inputField.current.value,
-        }).then((res) => {
-            navigate(`/recommendation?film=${res.data}`)
-        }).catch((err) => {
-            if (err.status === 400) {
-                setError('The provided prompt was not specific enough.');
-            }
-        }).finally(() => {
-            setLoading(false);
-        });
+        if (mediaType === 'book') {
+            postBookNoggin({
+                description: inputField.current.value,
+            }).then((res) => {
+                navigate(`/recommendation?book=${res.data.title}&author=${res.data.author}`);
+            }).catch((err) => {
+                if (err.status === 400) {
+                    setError('The provided prompt was not specific enough.');
+                }
+            }).finally(() => {
+                setLoading(false);
+            });
+
+        } else {
+            postFilmNoggin({
+                description: inputField.current.value,
+            }).then((res) => {
+                navigate(`/recommendation?film=${res.data}`)
+            }).catch((err) => {
+                if (err.status === 400) {
+                    setError('The provided prompt was not specific enough.');
+                }
+            }).finally(() => {
+                setLoading(false);
+            });
+        }
     }
 
     if (loading) {
@@ -66,8 +88,12 @@ export default function PromptPage() {
                     <Link to="/" className={classname(styles.button)} id={styles.homeButton}>Home</Link>
                 </div>
                 <div style={{ display: 'flex', alignItems: 'center' }}>
-                <img src={`./images/rainborepo-colored.png`} alt="Logo" style={{ width: '100px', height: '100px', marginRight: '10px',verticalAlign: 'middle' }} />
-                    <h1 style={{ margin: '0',verticalAlign: 'middle', lineHeight: '1'  }}>rainborepo</h1>
+                    <img
+                        src={`./images/rainborepo-colored.png`}
+                        alt="Logo"
+                        style={{ width: '100px', height: '100px', marginRight: '10px', verticalAlign: 'middle' }}
+                    />
+                    <h1 style={{ margin: '0', verticalAlign: 'middle', lineHeight: '1' }}>rainborepo</h1>
                 </div>
             </div>
 
@@ -93,8 +119,21 @@ export default function PromptPage() {
                             </div>
                         }
                         <div>
-                        <button type="submit" className="btn btn-secondary">Give me a film!</button>
-                        <button type="submit" className="btn btn-secondary" style={{ marginLeft: '10px' }}>Give me a book!</button>
+                            <button
+                                type="submit"
+                                className="btn btn-secondary"
+                                onClick={() => setMediaType('film')}
+                            >
+                                Give me a film!
+                            </button>
+                            <button
+                                type="submit"
+                                className="btn btn-secondary"
+                                style={{ marginLeft: '10px' }}
+                                onClick={() => setMediaType('book')}
+                            >
+                                Give me a book!
+                            </button>
                         </div>
                     </div>
                 </form>
