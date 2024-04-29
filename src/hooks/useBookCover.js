@@ -9,7 +9,6 @@ export default function useBookCover({ title, author }) {
         baseURL: 'http://bookcover.longitood.com/bookcover',
         headers: {
             Accept: 'application/json, text/plain, */*',
-            'Access-Control-Allow-Origin': 'http://localhost:3000',
         },
     }), []);
 

@@ -17,7 +17,7 @@ export default function SurveyPage() {
     const navigate = useNavigate();
     const postMoviesNoggin = useReagent({
         nogginId: 'mechanical-blackbird-3290',
-        apiKey: process.env.REACT_APP_SURVEY_PAGE_MOVIE_NOGGIN_API_KEY,
+        apiKey: process.env.REACT_APP_SURVEY_PAGE_FILM_NOGGIN_API_KEY,
     });
     const postBooksNoggin = useReagent({
         nogginId: 'deep-bass-2092',
