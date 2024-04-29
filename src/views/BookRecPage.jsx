@@ -22,7 +22,7 @@ export default function MovieRecPage() {
 
     const bookInfo = useOpenLibrary({
         stub: 'search.json',
-        params: { title, author, limit: 1, fields: 'cover_edition_key' },
+        params: { title, limit: 1, fields: 'cover_edition_key,ratings_average' },
     });
 
     useEffect(() => {
@@ -92,6 +92,11 @@ export default function MovieRecPage() {
                             </>
                         }
                     </p>
+                    {bookInfo?.data?.docs[0]?.ratings_average &&
+                        <div id="star-rating" className={classname(styles.starRating)}>
+                            {bookInfo.data.docs[0].ratings_average.toFixed(2)}/5
+                        </div>
+                    }
                 </div>
             </div>
         </div>
