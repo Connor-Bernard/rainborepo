@@ -32,23 +32,25 @@
 }
 
 .button {
-    flex: 1 !important;
-    text-align: center !important;
-    line-height: 60px !important; 
-    border: 2px solid transparent !important;
-    border-radius: 5px !important;
-    font-size: 18px !important;
-    font-weight: bold !important;
-    text-decoration: none !important;
-    cursor: pointer !important;
-    justify-content: center !important;
-    align-content: center !important;
+    color: #FAF8F0;
+    flex: 1;
+    text-align: center;
+    line-height: 60px; 
+    border: 2px solid transparent;
+    border-radius: 5px;
+    font-size: 1.75rem;
+    font-weight: bold;
+    text-decoration: none;
+    cursor: pointer;
+    display: inline-block; 
+    justify-content: center;
+    align-content: center;
 }
+
 
 /* header bar style - inspired by assignment 2 task 5*/
 .taskHeader {
 
-    background: linear-gradient(to right, #222222 50%, #4B4E6D 50%);
     color: #FAF8F0;
 
     display: flex !important;
