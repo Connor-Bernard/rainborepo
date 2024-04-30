@@ -2,7 +2,7 @@
 
 ## About
 
-This is a media recommendations app specitically for LGBTQIA+ recommendations.  It supports queries for both books and films.  Not only does it provide recommendations for the selected media type, but it utilizes GPT 4 Turbo to generate personalized descriptions of the recommended media.
+This is a media recommendations app specifically for LGBTQIA+ recommendations.  It supports queries for both books and films.  Not only does it provide recommendations for the selected media type, but it utilizes GPT 4 Turbo to generate personalized descriptions of the recommended media.
 
 ## Set Up
 
