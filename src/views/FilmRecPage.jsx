@@ -13,6 +13,7 @@ export default function FilmRecPage() {
     const [loadingAiRecommendation, setLoadingAiRecommendation] = useState(false);
     const [loadingReviews, setLoadingReviews] = useState(false);
     const [aiRecommendation, setAiRecommendation] = useState('');
+    // const [viewerReviews, setViewerReviews] = useState('');
     const [streamingServices, setStreamingServices] = useState([]);
     const [tmdbId, setTmdbId] = useState();
     const [reviews, setReviews] = useState([]);
@@ -147,6 +148,15 @@ export default function FilmRecPage() {
                                 <br />
                                 <strong>AI Generated Recommendation: </strong>
                                 {aiRecommendation}
+                                <br />
+                            </>
+                        }
+
+                        {reviews && 
+                            <>
+                                <br />
+                                <strong>Viewers think this film is: </strong>
+                                {reviews}
                                 <br />
                             </>
                         }
