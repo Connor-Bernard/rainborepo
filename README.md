@@ -18,6 +18,7 @@ To work with this application, you will need to set up the following environment
 - `REACT_APP_SURVEY_PAGE_BOOK_NOGGIN_API_KEY`
 - `REACT_APP_OMDB_API_KEY`
 - `REACT_APP_RAPID_API_KEY`
+- `REACT_APP_TMDB_ACCESS_TOKEN`
 
 ### Noggin API Keys
 
@@ -30,6 +31,10 @@ To get your OMDB API key, go to [the OMDB API key request page](https://www.omdb
 ### Rapid API Key
 
 To get your Rapid API key, [sign up for Rapid API](https://rapidapi.com/) and use the API key provided.
+
+### TMDB Access Token
+
+To get your TMDB access token, [sign up for TMDB API](https://developer.themoviedb.org/reference/intro/authentication#api-key-quick-start) and use the access token provided.
 
 ## Starting the app
 
