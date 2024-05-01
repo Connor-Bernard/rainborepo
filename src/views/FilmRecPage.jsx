@@ -157,10 +157,10 @@ export default function FilmRecPage() {
                             <>
                                 <br />
                                 <strong>Viewers think this film is: </strong>
-                                {reviews.map((review) => (
+                                {reviews.slice(0,2).map((review) => (
                                     <div>
                                         <div><strong>{review.author}:</strong></div>
-                                        <div><p>{review.content}</p></div>
+                                        <div><p>{review.content.slice(0, 200)}...</p></div>
                                     </div>
                                 ))}
                                 <br />
