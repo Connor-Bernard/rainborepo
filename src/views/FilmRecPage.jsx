@@ -88,11 +88,11 @@ export default function FilmRecPage() {
             return;
         }
         setLoadingReviews(true);
-        getTmdb('reviews').then((data) => {
-            if ((data?.results?.length ?? 0) === 0) {
+        getTmdb('reviews').then((res) => {
+            if ((res.data?.results?.length ?? 0) === 0) {
                 return;
             }
-            setReviews(data.results);
+            setReviews(res.data.results);
         }).catch((err) => {
             console.error(err);
         }).finally(() => {
@@ -152,11 +152,17 @@ export default function FilmRecPage() {
                             </>
                         }
 
+                        {console.debug(reviews)}
                         {reviews && 
                             <>
                                 <br />
                                 <strong>Viewers think this film is: </strong>
-                                {reviews}
+                                {reviews.map((review) => (
+                                    <div>
+                                        <div><strong>{review.author}:</strong></div>
+                                        <div><p>{review.content}</p></div>
+                                    </div>
+                                ))}
                                 <br />
                             </>
                         }
