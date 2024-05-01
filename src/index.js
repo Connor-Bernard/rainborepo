@@ -13,19 +13,19 @@ import LandingPage from './views/Landing';
 const router = createBrowserRouter([
   {
     path: '/',
-    element: <LandingPage />
+    element: <LandingPage />,
   },
   {
     path: '/recommendation',
-    element: <RecPage />
+    element: <RecPage />,
   },
   {
     path: '/prompt',
-    element: <PromptPage />
+    element: <PromptPage />,
   },
   {
     path: '/survey',
-    element: <SurveyPage />
+    element: <SurveyPage />,
   },
 ]);
 

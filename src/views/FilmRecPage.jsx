@@ -5,13 +5,18 @@ import { useSearchParams } from 'react-router-dom';
 import useOMDB from '../hooks/useOMDB';
 import useRapid from '../hooks/useRapid';
 import useReagent from '../hooks/useReagent';
+import useTmdb from '../hooks/useTMDB';
 import styles from './style/RecPage.module.css';
 import classname from 'classnames';
 
 export default function FilmRecPage() {
     const [loadingAiRecommendation, setLoadingAiRecommendation] = useState(false);
+    const [loadingReviews, setLoadingReviews] = useState(false);
     const [aiRecommendation, setAiRecommendation] = useState('');
     const [streamingServices, setStreamingServices] = useState([]);
+    const [tmdbId, setTmdbId] = useState();
+    const [reviews, setReviews] = useState([]);
+
     const [searchParams] = useSearchParams();
 
     const navigate = useNavigate();
@@ -24,6 +29,7 @@ export default function FilmRecPage() {
         nogginId: 'obedient-lamprey-8688',
         apiKey: process.env.REACT_APP_FILM_RECOMMENDATION_PAGE_NOGGIN_API_KEY,
     });
+
 
     useEffect(() => {
         if (!filmName) {
@@ -38,7 +44,7 @@ export default function FilmRecPage() {
                 console.error('Could not generate review for specified movie.');
             }
         });
-    }, [filmName, navigate, postNoggin]);
+    }, [filmName, postNoggin]);
 
     const omdbInfo = useOMDB(filmName);
 
@@ -61,13 +67,44 @@ export default function FilmRecPage() {
 
     useEffect(() => {
         let currServices = [];
+        let localTmdbId = rapidInfo.data?.result[0]?.tmdbId;
+        if (localTmdbId) {
+            setTmdbId(localTmdbId);
+        }
         rapidInfo.data?.result.forEach((resObject) => {
             currServices = currServices.concat(resObject?.streamingInfo?.us?.map(s => s.service));
         });
         setStreamingServices([...new Set(currServices)]);
     }, [rapidInfo.data]);
 
-    if (loadingAiRecommendation || omdbInfo.loading || rapidInfo.loading) {
+    const getTmdb = useTmdb({
+        accessToken: process.env.REACT_APP_TMDB_ACCESS_TOKEN,
+        tmdbMovieId: tmdbId,
+    });
+
+    useEffect(() => {
+        if (!tmdbId) {
+            return;
+        }
+        setLoadingReviews(true);
+        getTmdb('reviews').then((data) => {
+            if ((data?.results?.length ?? 0) === 0) {
+                return;
+            }
+            setReviews(data.results);
+        }).catch((err) => {
+            console.error(err);
+        }).finally(() => {
+            setLoadingReviews(false);
+        });
+    }, [getTmdb, tmdbId]);
+
+    if (
+        loadingAiRecommendation ||
+        omdbInfo.loading ||
+        rapidInfo.loading ||
+        loadingReviews
+    ) {
         // TODO: return the code for a loader here.
     }
 
