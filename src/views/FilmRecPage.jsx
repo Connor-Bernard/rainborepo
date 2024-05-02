@@ -153,14 +153,14 @@ export default function FilmRecPage() {
                         }
 
                         {console.debug(reviews)}
-                        {reviews && 
+                        {reviews.length > 0 && 
                             <>
                                 <br />
                                 <strong>Viewers think this film is: </strong>
-                                {reviews.map((review) => (
+                                {reviews.slice(0, 2).map((review) => (
                                     <div>
                                         <div><strong>{review.author}:</strong></div>
-                                        <div><p>{review.content}</p></div>
+                                        <div><p>{review.content.substr(0, 500)}{review.content.length > 500 && '...'}</p></div>
                                     </div>
                                 ))}
                                 <br />
